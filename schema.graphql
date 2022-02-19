@@ -1,0 +1,35 @@
+type Article {
+  id: ID!
+  title: String
+  body: String
+  publishedAt: DateTime
+  authorId: Int
+  author: Author
+}
+
+input ArticleFilter {
+  id: FilterIdNumber
+}
+
+type Author {
+  id: ID!
+  name: String
+  articles: [Article]
+}
+
+"""
+The `DateTime` scalar type represents a DateTime
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar DateTime
+
+input FilterIdNumber {
+  eq: Int
+  inList: [Int!]
+}
+
+type Query {
+  articles(filter: ArticleFilter): [Article]
+}
+
