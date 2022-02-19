@@ -11,6 +11,11 @@ input ArticleFilter {
   id: FilterIdNumber
 }
 
+type ArticleListResult {
+  data: [Article!]
+  pagination: Pagination
+}
+
 type Author {
   id: ID!
   name: String
@@ -29,7 +34,19 @@ input FilterIdNumber {
   inList: [Int!]
 }
 
+type Pagination {
+  totalCount: Int
+  totalPages: Int
+  page: Int
+  limit: Int
+}
+
+input PaginationInput {
+  page: Int = 1
+  limit: Int = 10
+}
+
 type Query {
-  articles(filter: ArticleFilter): [Article]
+  articles(filter: ArticleFilter, pagination: PaginationInput): ArticleListResult
 }
 
