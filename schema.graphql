@@ -4,7 +4,7 @@ type Article {
   body: String
   publishedAt: DateTime
   authorId: Int
-  author: Author
+  author: AuthorSingleResult
 }
 
 input ArticleFilter {
@@ -26,6 +26,10 @@ type Author {
   id: ID!
   name: String
   articles: [Article]
+}
+
+type AuthorSingleResult {
+  data: Author
 }
 
 """

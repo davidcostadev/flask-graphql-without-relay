@@ -10,10 +10,21 @@ class Author(SQLAlchemyObjectType):
         model = AuthorModel
 
 
+class AuthorSingleResult(graphene.ObjectType):
+    data = graphene.Field(Author)
+
+
 class Article(SQLAlchemyObjectType):
 
     class Meta:
         model = ArticleModel
+
+    author = graphene.Field(AuthorSingleResult)
+
+    def resolve_author(parent, info):
+        result = db_session.query(AuthorModel).filter(
+            AuthorModel.id == parent.author_id).first()
+        return {'data': result}
 
 
 class Pagination(graphene.ObjectType):
