@@ -1,3 +1,8 @@
+schema {
+  query: Query
+  mutation: Mutations
+}
+
 type Article {
   id: ID!
   title: String
@@ -9,6 +14,13 @@ type Article {
 
 input ArticleFilter {
   id: FilterIdNumber
+}
+
+input ArticleInput {
+  title: String!
+  body: String
+  publishedAt: DateTime
+  authorId: Int!
 }
 
 type ArticleListResult {
@@ -46,6 +58,10 @@ scalar DateTime
 input FilterIdNumber {
   eq: Int
   inList: [Int!]
+}
+
+type Mutations {
+  createArticle(input: ArticleInput): ArticleSingleResult
 }
 
 type Pagination {

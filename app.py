@@ -2,7 +2,7 @@ from flask import Flask
 from flask_graphql import GraphQLView
 
 from pavementblog.models import db_session
-from pavementblog.schema import schema, Article, Author
+from pavementblog.schema import schema
 
 app = Flask(__name__)
 app.debug = True

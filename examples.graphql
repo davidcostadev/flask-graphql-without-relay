@@ -41,3 +41,22 @@ query ArticleEntity {
     }
   }
 }
+
+mutation CreateArticle {
+  createArticle(
+    input: { title: "Another article", publishedAt: "2022-02-20T17:18:26.405Z", authorId: 1 }
+  ) {
+    data {
+      id
+      title
+      publishedAt
+      authorId
+      author {
+        data {
+          id
+          name
+        }
+      }
+    }
+  }
+}
