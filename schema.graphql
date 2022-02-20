@@ -44,6 +44,10 @@ type Author {
   articles: [Article]
 }
 
+input AuthorInput {
+  name: String!
+}
+
 type AuthorSingleResult {
   data: Author
 }
@@ -62,6 +66,7 @@ input FilterIdNumber {
 
 type Mutations {
   createArticle(input: ArticleInput): ArticleSingleResult
+  createAuthor(input: AuthorInput): AuthorSingleResult
 }
 
 type Pagination {

@@ -7,9 +7,6 @@ from .types import article, author, common
 
 class Query(graphene.ObjectType):
 
-    # class Arguments:
-    #     article_filter = ArticleFilter()
-
     articles = graphene.Field(article.ArticleListResult,
                               filter=article.ArticleFilter(),
                               pagination=common.PaginationInput(),
@@ -36,6 +33,7 @@ class Query(graphene.ObjectType):
 
 class Mutations(graphene.ObjectType):
     create_article = article.CreateArticle.Field()
+    create_author = author.CreateAuthor.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutations)
