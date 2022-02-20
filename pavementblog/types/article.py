@@ -60,3 +60,38 @@ class CreateArticle(graphene.Mutation):
         db_session.add(result)
         db_session.commit()
         return {'data': result}
+
+
+class UpdateArticle(graphene.Mutation):
+
+    class Arguments:
+        id = graphene.Int(required=True)
+        input = ArticleInput()
+
+    Output = ArticleSingleResult
+
+    def mutate(root, info, id, input):
+        result = db_session.query(ArticleModel).filter(
+            ArticleModel.id == id).first()
+        result.title = input.title
+        result.body = input.get('body', None)
+        result.published_at = input.published_at
+        result.author_id = input.author_id
+
+        db_session.commit()
+
+        return {'data': result}
+
+
+class DeleteArticle(graphene.Mutation):
+
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    Output = ArticleSingleResult
+
+    def mutate(root, info, id):
+        result = ArticleModel.query.filter_by(id=id).one()
+        ArticleModel.query.filter_by(id=id).delete()
+        db_session.commit()
+        return {'data': result}

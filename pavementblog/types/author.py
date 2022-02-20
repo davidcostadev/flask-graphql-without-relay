@@ -63,6 +63,3 @@ class DeleteAuthor(graphene.Mutation):
         AuthorModel.query.filter_by(id=id).delete()
         db_session.commit()
         return {'data': result}
-
-
-#

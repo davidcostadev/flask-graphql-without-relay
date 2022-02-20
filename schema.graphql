@@ -66,6 +66,8 @@ input FilterIdNumber {
 
 type Mutations {
   createArticle(input: ArticleInput): ArticleSingleResult
+  updateArticle(id: Int!, input: ArticleInput): ArticleSingleResult
+  deleteArticle(id: Int!): ArticleSingleResult
   createAuthor(input: AuthorInput): AuthorSingleResult
   updateAuthor(id: Int!, input: AuthorInput): AuthorSingleResult
   deleteAuthor(id: Int!): AuthorSingleResult

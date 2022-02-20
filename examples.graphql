@@ -78,3 +78,36 @@ mutation UpdateAuthor {
     }
   }
 }
+
+mutation DeleteAuthor {
+  deleteAuthor(id: 3) {
+    data {
+      id
+      name
+    }
+  }
+}
+
+mutation UpdateArticle {
+  updateArticle(
+    id: 1
+    input: {
+      title: "1 VMT reaches the mark of 100 million deliveries without plastic items"
+      authorId: 1
+    }
+  ) {
+    data {
+      id
+      title
+    }
+  }
+}
+
+mutation DeleteArticle {
+  deleteArticle(id: 3) {
+    data {
+      id
+      title
+    }
+  }
+}
