@@ -21,10 +21,14 @@ class Article(SQLAlchemyObjectType):
 
     author = graphene.Field(AuthorSingleResult)
 
-    def resolve_author(parent, info):
+    def resolve_author(self, info):
         result = db_session.query(AuthorModel).filter(
-            AuthorModel.id == parent.author_id).first()
+            AuthorModel.id == self.author_id).first()
         return {'data': result}
+
+
+class ArticleSingleResult(graphene.ObjectType):
+    data = graphene.Field(Article)
 
 
 class Pagination(graphene.ObjectType):
@@ -74,6 +78,8 @@ class Query(graphene.ObjectType):
                               pagination=PaginationInput(),
                               sorting=ArticleSorting())
 
+    article = graphene.Field(ArticleSingleResult, id=graphene.Int())
+
     def resolve_articles(self,
                          info,
                          filter=None,
@@ -84,6 +90,11 @@ class Query(graphene.ObjectType):
         query = sortingBy(query, sorting)
 
         return list_result(query, pagination)
+
+    def resolve_article(self, info, id):
+        result = db_session.query(ArticleModel).filter(
+            ArticleModel.id == id).first()
+        return {'data': result}
 
 
 def sortingBy(query, sorting):

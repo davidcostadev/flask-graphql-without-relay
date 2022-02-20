@@ -16,6 +16,10 @@ type ArticleListResult {
   pagination: Pagination
 }
 
+type ArticleSingleResult {
+  data: Article
+}
+
 input ArticleSorting {
   id: Sorting
   title: Sorting
@@ -58,6 +62,7 @@ input PaginationInput {
 
 type Query {
   articles(filter: ArticleFilter, pagination: PaginationInput, sorting: ArticleSorting): ArticleListResult
+  article(id: Int): ArticleSingleResult
 }
 
 enum Sorting {

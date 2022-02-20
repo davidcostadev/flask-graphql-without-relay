@@ -25,3 +25,19 @@ query FullExample {
     }
   }
 }
+
+query ArticleEntity {
+  article(id: 1) {
+    data {
+      id
+      title
+      publishedAt
+      author {
+        data {
+          id
+          name
+        }
+      }
+    }
+  }
+}
