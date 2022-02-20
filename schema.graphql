@@ -16,6 +16,10 @@ type ArticleListResult {
   pagination: Pagination
 }
 
+input ArticleSorting {
+  title: Sorting
+}
+
 type Author {
   id: ID!
   name: String
@@ -43,10 +47,15 @@ type Pagination {
 
 input PaginationInput {
   page: Int = 1
-  limit: Int = 10
+  limit: Int = 25
 }
 
 type Query {
-  articles(filter: ArticleFilter, pagination: PaginationInput): ArticleListResult
+  articles(filter: ArticleFilter, pagination: PaginationInput, sorting: ArticleSorting): ArticleListResult
+}
+
+enum Sorting {
+  ASC
+  DESC
 }
 

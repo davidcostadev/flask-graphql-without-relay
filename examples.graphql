@@ -1,0 +1,21 @@
+# full example
+
+query fullExample {
+  articles(
+    filter: { id: { inList: [1, 3] } }
+    pagination: { page: 2, limit: 1 }
+    sorting: { id: ASC }
+  ) {
+    data {
+      id
+      title
+      publishedAt
+    }
+    pagination {
+      totalCount
+      totalPages
+      page
+      limit
+    }
+  }
+}
