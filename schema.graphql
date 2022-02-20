@@ -17,7 +17,9 @@ type ArticleListResult {
 }
 
 input ArticleSorting {
+  id: Sorting
   title: Sorting
+  publishedAt: Sorting
 }
 
 type Author {
