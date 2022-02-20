@@ -69,3 +69,12 @@ mutation CreateAuthor {
     }
   }
 }
+
+mutation UpdateAuthor {
+  updateAuthor(id: 3, input: { name: "David Costa" }) {
+    data {
+      id
+      name
+    }
+  }
+}

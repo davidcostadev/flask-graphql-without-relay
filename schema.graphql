@@ -4,7 +4,7 @@ schema {
 }
 
 type Article {
-  id: ID!
+  id: Int
   title: String
   body: String
   publishedAt: DateTime
@@ -39,7 +39,7 @@ input ArticleSorting {
 }
 
 type Author {
-  id: ID!
+  id: Int
   name: String
   articles: [Article]
 }
@@ -67,6 +67,8 @@ input FilterIdNumber {
 type Mutations {
   createArticle(input: ArticleInput): ArticleSingleResult
   createAuthor(input: AuthorInput): AuthorSingleResult
+  updateAuthor(id: Int!, input: AuthorInput): AuthorSingleResult
+  deleteAuthor(id: Int!): AuthorSingleResult
 }
 
 type Pagination {

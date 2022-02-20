@@ -10,6 +10,7 @@ class Article(SQLAlchemyObjectType):
     class Meta:
         model = ArticleModel
 
+    id = graphene.Int()
     author = graphene.Field(AuthorSingleResult)
 
     def resolve_author(self, info):
