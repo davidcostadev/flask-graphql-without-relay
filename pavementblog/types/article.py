@@ -74,8 +74,8 @@ class UpdateArticle(graphene.Mutation):
         result = db_session.query(ArticleModel).filter(
             ArticleModel.id == id).first()
         result.title = input.title
-        result.body = input.get('body', None)
-        result.published_at = input.published_at
+        result.body = input.get('body', result.body)
+        result.published_at = input.get('published_at', result.published_at)
         result.author_id = input.author_id
 
         db_session.commit()
